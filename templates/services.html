@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Services | RAAJ QUALITY XEROX{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+    <div class="container">
+        <p class="tagline">Our Services</p>
+        <h1>Print, Xerox, lamination and document services</h1>
+        <p>
+            Choose from our available services. Prices can be updated anytime by the shop partners.
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        {% if services %}
+            <div class="service-grid">
+                {% for service in services %}
+                    <div class="service-card">
+                        <div class="icon">{{ service.icon }}</div>
+                        <h3>{{ service.name }}</h3>
+                        <p>{{ service.description }}</p>
+                        <strong>Starts from ₹{{ service.base_price }}</strong>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-box">
+                <h3>No services added yet.</h3>
+                <p>Add services from the Django admin panel.</p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

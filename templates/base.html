@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}RAAJ QUALITY XEROX{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<header class="site-header">
+    <nav class="navbar container">
+        <a href="{% url 'home' %}" class="logo">
+            <span>RAAJ</span> QUALITY XEROX
+        </a>
+
+        <div class="nav-links">
+            <a href="#">Services</a>
+            <a href="#">Place Order</a>
+            <a href="#">Track Order</a>
+            <a href="#">Contact</a>
+            <a href="#" class="nav-btn">Partner Login</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+<footer class="footer">
+    <div class="container footer-grid">
+        <div>
+            <h3>RAAJ QUALITY XEROX</h3>
+            <p>Fast printing, Xerox, lamination, flex printing, passport photos, and document services.</p>
+        </div>
+
+        <div>
+            <h4>Contact</h4>
+            <p>Phone: +91 XXXXX XXXXX</p>
+            <p>Hyderabad, Telangana</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
