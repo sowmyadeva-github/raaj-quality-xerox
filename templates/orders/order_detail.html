@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Order Details | RAAJ QUALITY XEROX{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="success-card">
+            <p class="tagline">Order Status</p>
+            <h1>Order details for {{ order.order_id }}</h1>
+            <p class="success-text">
+                Here is the current status and information for your order.
+            </p>
+
+            <div class="success-details">
+                <div class="success-item">
+                    <span>Customer Name</span>
+                    <strong>{{ order.customer_name }}</strong>
+                </div>
+
+                <div class="success-item">
+                    <span>Phone Number</span>
+                    <strong>{{ order.phone_number }}</strong>
+                </div>
+
+                <div class="success-item">
+                    <span>Service</span>
+                    <strong>{{ order.service.name }}</strong>
+                </div>
+
+                <div class="success-item">
+                    <span>Copies</span>
+                    <strong>{{ order.copies }}</strong>
+                </div>
+
+                <div class="success-item">
+                    <span>Print Type</span>
+                    <strong>{{ order.get_print_type_display }}</strong>
+                </div>
+
+                <div class="success-item">
+                    <span>Paper Size</span>
+                    <strong>{{ order.paper_size }}</strong>
+                </div>
+
+                <div class="success-item">
+                    <span>Current Status</span>
+                    <strong>{{ order.get_status_display }}</strong>
+                </div>
+
+                <div class="success-item">
+                    <span>Total Price</span>
+                    <strong>₹{{ order.total_price }}</strong>
+                </div>
+            </div>
+
+            <div class="hero-actions">
+                <a href="{% url 'track_order' %}" class="btn secondary-btn">Track Another Order</a>
+                <a href="{% url 'home' %}" class="btn primary-btn">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

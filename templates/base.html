@@ -16,12 +16,14 @@
         </a>
 
         <div class="nav-links">
-            <a href="#">Services</a>
-            <a href="#">Place Order</a>
-            <a href="#">Track Order</a>
-            <a href="#">Contact</a>
-            <a href="#" class="nav-btn">Partner Login</a>
-        </div>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'service_list' %}">Services</a>
+    <a href="{% url 'place_order' %}">Place Order</a>
+    <a href="{% url 'track_order' %}">Track Order</a>
+    <a href="{% url 'dashboard_home' %}">Dashboard</a>
+    <a href="#">Contact</a>
+    <a href="/admin/" class="nav-btn">Partner Login</a>
+</div>
     </nav>
 </header>
 

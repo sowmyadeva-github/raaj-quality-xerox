@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Place Order | RAAJ QUALITY XEROX{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <p class="tagline">Place Your Order</p>
+        <h1>Upload your document and place a print/Xerox order</h1>
+        <p>
+            Fill in your details, choose the service and print options, and upload your file.
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="order-form-wrapper">
+            <div class="order-info-card">
+                <h2>Why order online?</h2>
+                <ul>
+                    <li>✔ Upload documents from home</li>
+                    <li>✔ Save time at the shop</li>
+                    <li>✔ Get faster print processing</li>
+                    <li>✔ Easy order tracking in next phase</li>
+                </ul>
+            </div>
+
+            <div class="order-form-card">
+                <h2>Order Details</h2>
+                <form method="POST" enctype="multipart/form-data" class="order-form">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label for="{{ form.customer_name.id_for_label }}">Customer Name</label>
+                        {{ form.customer_name }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.phone_number.id_for_label }}">Phone Number</label>
+                        {{ form.phone_number }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.service.id_for_label }}">Service</label>
+                        {{ form.service }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.document.id_for_label }}">Upload Document</label>
+                        {{ form.document }}
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="{{ form.copies.id_for_label }}">Copies</label>
+                            {{ form.copies }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="{{ form.print_type.id_for_label }}">Print Type</label>
+                            {{ form.print_type }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.paper_size.id_for_label }}">Paper Size</label>
+                        {{ form.paper_size }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.instructions.id_for_label }}">Instructions</label>
+                        {{ form.instructions }}
+                    </div>
+
+                    <button type="submit" class="btn primary-btn full-btn">Place Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

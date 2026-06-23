@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Track Order | RAAJ QUALITY XEROX{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <p class="tagline">Track Order</p>
+        <h1>Check your order status instantly</h1>
+        <p>
+            Enter your Order ID and phone number to view the latest status of your order.
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="track-order-wrapper">
+            <div class="order-info-card">
+                <h2>How tracking works</h2>
+                <ul>
+                    <li>✔ Enter the Order ID shown after placing the order</li>
+                    <li>✔ Enter the same phone number used while ordering</li>
+                    <li>✔ View the live order status instantly</li>
+                    <li>✔ Check whether the order is pending, printing, ready or completed</li>
+                </ul>
+            </div>
+
+            <div class="order-form-card">
+                <h2>Track Your Order</h2>
+
+                {% if error %}
+                    <div class="form-error">{{ error }}</div>
+                {% endif %}
+
+                <form method="POST" class="order-form">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label for="{{ form.order_id.id_for_label }}">Order ID</label>
+                        {{ form.order_id }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.phone_number.id_for_label }}">Phone Number</label>
+                        {{ form.phone_number }}
+                    </div>
+
+                    <button type="submit" class="btn primary-btn full-btn">Track Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

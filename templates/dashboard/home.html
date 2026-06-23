@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}Partner Dashboard | RAAJ QUALITY XEROX{% endblock %}
+
+{% block content %}
+<section class="dashboard-page">
+    <div class="container">
+        <div class="dashboard-header">
+            <div>
+                <p class="dashboard-tag">PARTNER DASHBOARD</p>
+                <h1>Shop Order Overview</h1>
+                <p>Track total orders, live status updates, completed jobs, and revenue in one place.</p>
+            </div>
+
+            <a href="/admin/orders/order/" class="btn primary-btn">Open Admin Orders</a>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <p>Total Orders</p>
+                <h2>{{ total_orders }}</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>Pending Orders</p>
+                <h2>{{ pending_orders }}</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>Completed Orders</p>
+                <h2>{{ completed_orders }}</h2>
+            </div>
+
+            <div class="stat-card highlight-card">
+                <p>Total Revenue</p>
+                <h2>₹{{ total_revenue }}</h2>
+            </div>
+        </div>
+
+        <div class="dashboard-layout">
+            <div class="dashboard-main-card">
+                <div class="card-head">
+                    <h3>Recent Orders</h3>
+                    <p>Latest customer orders placed in the system.</p>
+                </div>
+
+                {% if recent_orders %}
+                <div class="table-wrap">
+                    <table class="dashboard-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Service</th>
+                                <th>Status</th>
+                                <th>Price</th>
+                                <th>Placed On</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in recent_orders %}
+                            <tr>
+                                <td>{{ order.order_id }}</td>
+                                <td>{{ order.customer_name }}</td>
+                                <td>{{ order.service.name }}</td>
+                                <td>
+                                    <span class="status-badge status-{{ order.status|slugify }}">
+                                        {{ order.get_status_display }}
+                                    </span>
+                                </td>
+                                <td>₹{{ order.total_price }}</td>
+                                <td>{{ order.created_at|date:"d M Y, h:i A" }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="empty-box">
+                    <h3>No orders yet</h3>
+                    <p>Orders placed by customers will appear here once they start using the website.</p>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="dashboard-side">
+                <div class="dashboard-side-card">
+                    <h3>Status Summary</h3>
+                    <div class="status-summary">
+                        <div class="status-item">
+                            <span>Pending</span>
+                            <strong>{{ pending_orders }}</strong>
+                        </div>
+                        <div class="status-item">
+                            <span>Confirmed</span>
+                            <strong>{{ confirmed_orders }}</strong>
+                        </div>
+                        <div class="status-item">
+                            <span>Printing</span>
+                            <strong>{{ printing_orders }}</strong>
+                        </div>
+                        <div class="status-item">
+                            <span>Ready for Pickup</span>
+                            <strong>{{ ready_orders }}</strong>
+                        </div>
+                        <div class="status-item">
+                            <span>Completed</span>
+                            <strong>{{ completed_orders }}</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-side-card">
+                    <h3>Quick Actions</h3>
+                    <div class="quick-actions">
+                        <a href="/admin/orders/order/" class="quick-link">Manage Orders</a>
+                        <a href="/admin/services/service/" class="quick-link">Manage Services</a>
+                        <a href="{% url 'place_order' %}" class="quick-link">Test Place Order</a>
+                        <a href="{% url 'track_order' %}" class="quick-link">Track Customer Order</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
