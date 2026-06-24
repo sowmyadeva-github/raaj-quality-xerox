@@ -64,14 +64,19 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="{{ form.paper_size.id_for_label }}">Paper Size</label>
-                        {{ form.paper_size }}
-                    </div>
+    <label for="{{ form.paper_size.id_for_label }}">Paper Size</label>
+    {{ form.paper_size }}
+</div>
 
-                    <div class="form-group">
-                        <label for="{{ form.instructions.id_for_label }}">Instructions</label>
-                        {{ form.instructions }}
-                    </div>
+<div class="form-group">
+    <label for="{{ form.payment_method.id_for_label }}">Payment Method</label>
+    {{ form.payment_method }}
+</div>
+
+<div class="form-group">
+    <label for="{{ form.instructions.id_for_label }}">Instructions</label>
+    {{ form.instructions }}
+</div>
 
                     <button type="submit" class="btn primary-btn full-btn">Place Order</button>
                 </form>

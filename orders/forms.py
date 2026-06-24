@@ -6,38 +6,40 @@ class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = [
-            "customer_name",
-            "phone_number",
-            "service",
-            "document",
-            "copies",
-            "print_type",
-            "paper_size",
-            "instructions",
-        ]
+    "customer_name",
+    "phone_number",
+    "service",
+    "document",
+    "copies",
+    "print_type",
+    "paper_size",
+    "payment_method",
+    "instructions",
+]
         widgets = {
-            "customer_name": forms.TextInput(attrs={
-                "class": "form-control",
-                "placeholder": "Enter your full name"
-            }),
-            "phone_number": forms.TextInput(attrs={
-                "class": "form-control",
-                "placeholder": "Enter phone number"
-            }),
-            "service": forms.Select(attrs={"class": "form-control"}),
-            "document": forms.ClearableFileInput(attrs={"class": "form-control"}),
-            "copies": forms.NumberInput(attrs={
-                "class": "form-control",
-                "min": 1
-            }),
-            "print_type": forms.Select(attrs={"class": "form-control"}),
-            "paper_size": forms.Select(attrs={"class": "form-control"}),
-            "instructions": forms.Textarea(attrs={
-                "class": "form-control",
-                "rows": 4,
-                "placeholder": "Any special instructions"
-            }),
-        }
+    "customer_name": forms.TextInput(attrs={
+        "class": "form-control",
+        "placeholder": "Enter your full name"
+    }),
+    "phone_number": forms.TextInput(attrs={
+        "class": "form-control",
+        "placeholder": "Enter phone number"
+    }),
+    "service": forms.Select(attrs={"class": "form-control"}),
+    "document": forms.ClearableFileInput(attrs={"class": "form-control"}),
+    "copies": forms.NumberInput(attrs={
+        "class": "form-control",
+        "min": 1
+    }),
+    "print_type": forms.Select(attrs={"class": "form-control"}),
+    "paper_size": forms.Select(attrs={"class": "form-control"}),
+    "payment_method": forms.Select(attrs={"class": "form-control"}),
+    "instructions": forms.Textarea(attrs={
+        "class": "form-control",
+        "rows": 4,
+        "placeholder": "Any special instructions"
+    }),
+}
 
 
 class TrackOrderForm(forms.Form):

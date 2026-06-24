@@ -16,13 +16,18 @@ class Order(models.Model):
     ]
 
     STATUS_CHOICES = [
-    ("pending", "Pending"),
-    ("confirmed", "Confirmed"),
-    ("printing", "Printing"),
-    ("ready", "Ready for Pickup"),
-    ("completed", "Completed"),
-    ("cancelled", "Cancelled"),
-]
+        ("pending", "Pending"),
+        ("confirmed", "Confirmed"),
+        ("printing", "Printing"),
+        ("ready", "Ready for Pickup"),
+        ("completed", "Completed"),
+        ("cancelled", "Cancelled"),
+    ]
+
+    PAYMENT_METHOD_CHOICES = [
+        ("pay_at_shop", "Pay at Shop"),
+        ("online", "Online Payment"),
+    ]
 
     PAYMENT_STATUS_CHOICES = [
         ("pending", "Pending"),
@@ -44,7 +49,18 @@ class Order(models.Model):
 
     total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="pending")
-    payment_status = models.CharField(max_length=20, choices=PAYMENT_STATUS_CHOICES, default="pending")
+
+    payment_method = models.CharField(
+        max_length=20,
+        choices=PAYMENT_METHOD_CHOICES,
+        default="pay_at_shop"
+    )
+
+    payment_status = models.CharField(
+        max_length=20,
+        choices=PAYMENT_STATUS_CHOICES,
+        default="pending"
+    )
 
     created_at = models.DateTimeField(auto_now_add=True)
 

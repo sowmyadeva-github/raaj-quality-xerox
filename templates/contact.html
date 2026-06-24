@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us | RAAJ QUALITY XEROX{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <p class="tagline">Contact Us</p>
+        <h1>Get in touch with RAAJ QUALITY XEROX</h1>
+        <p>
+            Reach out for printouts, Xerox, lamination, passport photos, flex printing, document support, and custom shop enquiries.
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="contact-layout">
+            <div class="contact-card">
+                <h2>Shop Contact Details</h2>
+                <div class="contact-list">
+                    <div class="contact-item">
+                        <span>📍 Address</span>
+                        <p>Raaj Quality Xerox, Hyderabad, Telangana</p>
+                    </div>
+
+                    <div class="contact-item">
+                        <span>📞 Phone</span>
+                        <p>+91 XXXXX XXXXX</p>
+                    </div>
+
+                    <div class="contact-item">
+                        <span>💬 WhatsApp</span>
+                        <p>+91 XXXXX XXXXX</p>
+                    </div>
+
+                    <div class="contact-item">
+                        <span>✉ Email</span>
+                        <p>raajqualityxerox@gmail.com</p>
+                    </div>
+
+                    <div class="contact-item">
+                        <span>🕒 Working Hours</span>
+                        <p>Monday – Saturday: 9:00 AM to 9:00 PM</p>
+                        <p>Sunday: 10:00 AM to 6:00 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-card">
+                <h2>Why contact us?</h2>
+                <ul class="contact-points">
+                    <li>Bulk printout and Xerox enquiries</li>
+                    <li>Flex/banner printing support</li>
+                    <li>Passport size photo requests</li>
+                    <li>Lamination and binding service details</li>
+                    <li>Order-related support and custom requirements</li>
+                </ul>
+
+                <div class="contact-actions">
+                    <a href="{% url 'place_order' %}" class="btn primary-btn">Place Order</a>
+                    <a href="{% url 'track_order' %}" class="btn secondary-btn">Track Order</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section light-section">
+    <div class="container">
+        <div class="map-card">
+            <h2>Visit Our Shop</h2>
+            <p>
+                We can later embed the live Google Map here. For now, this section acts as the location block for the website.
+            </p>
+
+            <div class="map-placeholder">
+                <div>
+                    <h3>RAAJ QUALITY XEROX</h3>
+                    <p>Hyderabad, Telangana</p>
+                    <p>Fast printouts, Xerox, lamination, flex printing and more.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -18,14 +18,22 @@
                     <span>Order ID</span>
                     <strong>{{ order.order_id }}</strong>
                 </div>
+
                 <div class="success-item">
                     <span>Service</span>
                     <strong>{{ order.service.name }}</strong>
                 </div>
+
                 <div class="success-item">
                     <span>Status</span>
                     <strong>{{ order.get_status_display }}</strong>
                 </div>
+
+                <div class="success-item">
+                    <span>Payment Method</span>
+                    <strong>{{ order.get_payment_method_display }}</strong>
+                </div>
+
                 <div class="success-item">
                     <span>Total Price</span>
                     <strong>₹{{ order.total_price }}</strong>
