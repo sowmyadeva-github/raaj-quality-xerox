@@ -6,34 +6,110 @@
 
 <section class="page-hero">
     <div class="container">
-        <p class="tagline">Our Services</p>
-        <h1>Print, Xerox, lamination and document services</h1>
+        <p class="tagline">Professional Print Solutions</p>
+        <h1>Printing & Document Services</h1>
         <p>
-            Choose from our available services. Prices can be updated anytime by the shop partners.
+            High-quality printing, Xerox, scanning, lamination, binding, passport photos,
+            and custom printing solutions for students, businesses, and professionals.
         </p>
     </div>
 </section>
 
 <section class="section">
     <div class="container">
+
         {% if services %}
-            <div class="service-grid">
-                {% for service in services %}
-                    <div class="service-card">
-                        <div class="icon">{{ service.icon }}</div>
-                        <h3>{{ service.name }}</h3>
-                        <p>{{ service.description }}</p>
-                        <strong>Starts from ₹{{ service.base_price }}</strong>
+        <div class="service-grid">
+
+            {% for service in services %}
+            <div class="service-card">
+
+                <div class="icon">
+                    {{ service.icon }}
+                </div>
+
+                <h3>{{ service.name }}</h3>
+
+                <p>
+                    {{ service.description }}
+                </p>
+
+                <div class="service-info">
+
+                    <div class="service-price">
+                        <span>Starting Price</span>
+                        <strong>₹{{ service.base_price }}</strong>
                     </div>
-                {% endfor %}
+
+                    <div class="service-time">
+                        <span>Turnaround</span>
+                        <strong>10-30 mins</strong>
+                    </div>
+
+                </div>
+
+                <div class="service-actions">
+                    <a href="{% url 'place_order' %}" class="btn primary-btn">
+                        Order Now
+                    </a>
+                </div>
+
             </div>
+            {% endfor %}
+
+        </div>
+
         {% else %}
-            <div class="empty-box">
-                <h3>No services added yet.</h3>
-                <p>Add services from the Django admin panel.</p>
-            </div>
+
+        <div class="empty-box">
+            <h3>No services available yet</h3>
+            <p>
+                Services will appear here after being added from the Partner Dashboard.
+            </p>
+
+            <a href="/admin/services/service/" class="btn primary-btn">
+                Manage Services
+            </a>
+        </div>
+
         {% endif %}
+
     </div>
+</section>
+
+<section class="section light-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <p class="tagline">Why Choose Us</p>
+            <h2>Trusted by Students & Businesses</h2>
+        </div>
+
+        <div class="service-grid">
+
+            <div class="service-card">
+                <div class="icon">⚡</div>
+                <h3>Fast Delivery</h3>
+                <p>Most print orders are completed within minutes.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="icon">💳</div>
+                <h3>Flexible Payments</h3>
+                <p>Pay online or conveniently at the shop.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="icon">📱</div>
+                <h3>Track Orders</h3>
+                <p>Monitor your order status in real time.</p>
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
 
 {% endblock %}

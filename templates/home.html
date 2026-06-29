@@ -16,8 +16,8 @@
             </p>
 
             <div class="hero-actions">
-                <a href="#" class="btn primary-btn">Place Order</a>
-                <a href="#" class="btn secondary-btn">Track Order</a>
+                <a href="{% url 'place_order' %}" class="btn primary-btn">Place Order</a>
+<a href="{% url 'track_order' %}" class="btn secondary-btn">Track Order</a>
             </div>
         </div>
 
@@ -116,7 +116,7 @@
             <h2>Need urgent prints?</h2>
             <p>Place your order online and collect it directly from the shop.</p>
         </div>
-        <a href="#" class="btn primary-btn">Start Order</a>
+        <a href="{% url 'place_order' %}" class="btn primary-btn">Start Order</a>
     </div>
 </section>
 

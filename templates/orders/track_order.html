@@ -6,9 +6,9 @@
 <section class="page-hero">
     <div class="container">
         <p class="tagline">Track Order</p>
-        <h1>Check your order status instantly</h1>
+        <h1>Know exactly where your order stands</h1>
         <p>
-            Enter your Order ID and phone number to view the latest status of your order.
+            Enter your Order ID and phone number to view live order status, payment status, and order details.
         </p>
     </div>
 </section>
@@ -17,13 +17,20 @@
     <div class="container">
         <div class="track-order-wrapper">
             <div class="order-info-card">
-                <h2>How tracking works</h2>
+                <h2>Track in seconds</h2>
                 <ul>
-                    <li>✔ Enter the Order ID shown after placing the order</li>
-                    <li>✔ Enter the same phone number used while ordering</li>
-                    <li>✔ View the live order status instantly</li>
-                    <li>✔ Check whether the order is pending, printing, ready or completed</li>
+                    <li>✔ Use the Order ID received after placing your order</li>
+                    <li>✔ Enter the same phone number used during ordering</li>
+                    <li>✔ Check order and payment status instantly</li>
+                    <li>✔ Know when your order is ready for pickup</li>
                 </ul>
+
+                <div class="order-tip-box">
+                    <h3>Where is my Order ID?</h3>
+                    <p>
+                        Your Order ID appears on the order success page, like <strong>RQX-123456</strong>.
+                    </p>
+                </div>
             </div>
 
             <div class="order-form-card">
@@ -46,7 +53,9 @@
                         {{ form.phone_number }}
                     </div>
 
-                    <button type="submit" class="btn primary-btn full-btn">Track Order</button>
+                    <button type="submit" class="btn primary-btn full-btn">
+                        Track Order
+                    </button>
                 </form>
             </div>
         </div>

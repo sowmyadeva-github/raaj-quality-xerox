@@ -821,3 +821,459 @@ a {
         grid-template-columns: 1fr;
     }
 }
+.payment-pending {
+    background: #fff7ed;
+    color: #c2410c;
+}
+
+.payment-paid {
+    background: #ecfdf5;
+    color: #15803d;
+}
+
+.payment-failed {
+    background: #fef2f2;
+    color: #b91c1c;
+}
+/* =========================
+   DASHBOARD POLISH
+========================= */
+
+.dashboard-table th,
+.dashboard-table td {
+    white-space: nowrap;
+}
+
+.dashboard-table td:first-child {
+    font-weight: 800;
+    color: #0477bf;
+}
+
+.dashboard-table td:nth-child(2),
+.dashboard-table td:nth-child(3) {
+    min-width: 120px;
+}
+
+.dashboard-table td:nth-child(5),
+.dashboard-table td:nth-child(6) {
+    min-width: 120px;
+}
+
+.dashboard-table td:last-child {
+    min-width: 145px;
+}
+
+.payment-paid,
+.payment-pending,
+.payment-failed {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 800;
+}
+
+.table-wrap {
+    border-radius: 18px;
+    overflow-x: auto;
+}
+
+.dashboard-table tbody tr:hover {
+    background: #f8fbfe;
+}
+
+.stat-card {
+    transition: 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+}
+/* =========================
+   RESPONSIVE NAVBAR + UX POLISH
+========================= */
+
+.menu-toggle {
+    display: none;
+}
+
+.hamburger {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #07182b;
+    font-weight: 800;
+}
+
+.site-header {
+    backdrop-filter: blur(14px);
+}
+
+.btn,
+.nav-btn,
+.quick-link,
+.service-card,
+.stat-card,
+.order-form-card,
+.order-info-card,
+.contact-card,
+.dashboard-main-card,
+.dashboard-side-card {
+    transition: 0.25s ease;
+}
+
+.btn:hover,
+.nav-btn:hover,
+.quick-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(4, 119, 191, 0.18);
+}
+
+@media (max-width: 1024px) {
+    .navbar {
+        height: auto;
+        min-height: 76px;
+        position: relative;
+        flex-wrap: wrap;
+        padding: 18px 0;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 22px 0 8px;
+        border-top: 1px solid #e6edf5;
+        margin-top: 14px;
+    }
+
+    .menu-toggle:checked ~ .nav-links {
+        display: flex;
+    }
+
+    .nav-links a {
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .nav-btn {
+        text-align: center;
+        width: 100%;
+    }
+
+    .hero-grid,
+    .order-form-wrapper,
+    .track-order-wrapper,
+    .contact-layout,
+    .dashboard-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        width: min(100% - 28px, 1120px);
+    }
+
+    .hero h1,
+    .page-hero h1,
+    .dashboard-header h1 {
+        font-size: 2.1rem;
+    }
+
+    .hero,
+    .page-hero,
+    .dashboard-page {
+        padding: 52px 0;
+    }
+
+    .section {
+        padding: 52px 0;
+    }
+
+    .stats-grid,
+    .success-details,
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .success-card,
+    .order-form-card,
+    .order-info-card,
+    .contact-card,
+    .map-card,
+    .dashboard-main-card,
+    .dashboard-side-card {
+        padding: 22px;
+        border-radius: 22px;
+    }
+
+    .hero-actions,
+    .contact-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-actions .btn,
+    .contact-actions .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .dashboard-table {
+        min-width: 900px;
+    }
+
+    .table-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .logo {
+        font-size: 1rem;
+    }
+}
+/* =========================
+   PLACE ORDER POLISH
+========================= */
+
+.order-tip-box {
+    margin-top: 26px;
+    background: linear-gradient(135deg, #eef8ff, #ffffff);
+    border: 1px solid #dcecf7;
+    border-radius: 20px;
+    padding: 22px;
+}
+
+.order-tip-box h3 {
+    color: #07182b;
+    margin-bottom: 8px;
+}
+
+.order-tip-box p {
+    color: #5e7186;
+}
+
+.upload-box label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: #102033;
+}
+
+.upload-inner {
+    border: 2px dashed #b9dff5;
+    background: #f8fbfe;
+    border-radius: 20px;
+    padding: 24px;
+    text-align: center;
+    transition: 0.25s ease;
+}
+
+.upload-inner:hover {
+    border-color: #0477bf;
+    background: #eef8ff;
+}
+
+.upload-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.upload-inner p {
+    color: #5e7186;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+/* =========================
+   PLACE ORDER PREMIUM POLISH
+========================= */
+
+.order-tip-box {
+    margin-top: 26px;
+    background: linear-gradient(135deg, #eef8ff, #ffffff);
+    border: 1px solid #dcecf7;
+    border-radius: 20px;
+    padding: 22px;
+}
+
+.order-tip-box h3 {
+    color: #07182b;
+    margin-bottom: 8px;
+}
+
+.order-tip-box p {
+    color: #5e7186;
+}
+
+.upload-box label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: #102033;
+}
+
+.upload-inner {
+    border: 2px dashed #b9dff5;
+    background: #f8fbfe;
+    border-radius: 20px;
+    padding: 24px;
+    text-align: center;
+    transition: 0.25s ease;
+}
+
+.upload-inner:hover {
+    border-color: #0477bf;
+    background: #eef8ff;
+}
+
+.upload-icon {
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+}
+
+.upload-inner p {
+    color: #5e7186;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+/* ===========================
+   ORDER FLOW STEPS
+=========================== */
+
+.order-flow-steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 45px;
+    flex-wrap: wrap;
+}
+
+.flow-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.flow-step span {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #eef6ff;
+    border: 2px solid #c7def5;
+    color: #0b74c9;
+    font-size: 1.2rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+}
+
+.flow-step.active span {
+    background: linear-gradient(135deg,#0b74c9,#25a4ff);
+    color: white;
+    border: none;
+    box-shadow: 0 10px 25px rgba(11,116,201,.25);
+}
+
+.flow-step p {
+    font-weight: 600;
+    color: #44566c;
+    font-size: .95rem;
+}
+
+.flow-line {
+    width: 70px;
+    height: 3px;
+    background: #dbe8f4;
+    border-radius: 100px;
+}
+
+@media(max-width:768px){
+
+    .order-flow-steps{
+        gap:12px;
+    }
+
+    .flow-line{
+        display:none;
+    }
+
+    .flow-step span{
+        width:50px;
+        height:50px;
+        font-size:1rem;
+    }
+
+    .flow-step p{
+        font-size:.82rem;
+    }
+
+}
+/* ===========================
+   PREMIUM UPLOAD BOX
+=========================== */
+
+.upload-inner h3 {
+    color: #07182b;
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+}
+
+.file-tags {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 14px 0 18px;
+}
+
+.file-tags span {
+    background: #ffffff;
+    border: 1px solid #d9e9f5;
+    color: #0477bf;
+    font-weight: 800;
+    font-size: 0.82rem;
+    padding: 7px 12px;
+    border-radius: 999px;
+}
+
+.upload-inner input[type="file"] {
+    margin-top: 10px;
+}
+.selected-file{
+    margin-top:15px;
+    font-size:.95rem;
+    font-weight:600;
+    color:#0477bf;
+    text-align:center;
+}
+.upload-inner.drag-active {
+    border-color: #0477bf;
+    background: #e8f6ff;
+    transform: scale(1.01);
+    box-shadow: 0 18px 45px rgba(4, 119, 191, 0.16);
+}
+
+.upload-inner.file-selected {
+    border-color: #16a34a;
+    background: #f0fdf4;
+}

@@ -17,6 +17,10 @@ def create_order(request):
 
             order.total_price = total
             order.save()
+
+            if order.payment_method == "online":
+                return redirect("payment_checkout", order_id=order.order_id)
+
             return redirect("order_success", order_id=order.order_id)
     else:
         form = OrderForm()
@@ -51,3 +55,16 @@ def track_order(request):
 def order_detail(request, order_id):
     order = get_object_or_404(Order, order_id=order_id)
     return render(request, "orders/order_detail.html", {"order": order})
+
+
+def payment_checkout(request, order_id):
+    order = get_object_or_404(Order, order_id=order_id)
+    return render(request, "orders/payment_checkout.html", {"order": order})
+
+
+def mark_payment_success(request, order_id):
+    order = get_object_or_404(Order, order_id=order_id)
+    order.payment_status = "paid"
+    order.status = "confirmed"
+    order.save()
+    return redirect("order_success", order_id=order.order_id)

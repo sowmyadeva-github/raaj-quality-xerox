@@ -9,7 +9,7 @@
             <div>
                 <p class="dashboard-tag">PARTNER DASHBOARD</p>
                 <h1>Shop Order Overview</h1>
-                <p>Track total orders, live status updates, completed jobs, and revenue in one place.</p>
+                <p>Track orders, payment status, completed jobs, and revenue in one place.</p>
             </div>
 
             <a href="/admin/orders/order/" class="btn primary-btn">Open Admin Orders</a>
@@ -22,6 +22,23 @@
             </div>
 
             <div class="stat-card">
+                <p>Paid Orders</p>
+                <h2>{{ paid_orders }}</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>Pending Payments</p>
+                <h2>{{ pending_payments }}</h2>
+            </div>
+
+            <div class="stat-card highlight-card">
+                <p>Total Revenue</p>
+                <h2>₹{{ total_revenue }}</h2>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
                 <p>Pending Orders</p>
                 <h2>{{ pending_orders }}</h2>
             </div>
@@ -31,9 +48,14 @@
                 <h2>{{ completed_orders }}</h2>
             </div>
 
-            <div class="stat-card highlight-card">
-                <p>Total Revenue</p>
-                <h2>₹{{ total_revenue }}</h2>
+            <div class="stat-card">
+                <p>Online Payments</p>
+                <h2>{{ online_payment_orders }}</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>Pay at Shop</p>
+                <h2>{{ pay_at_shop_orders }}</h2>
             </div>
         </div>
 
@@ -41,7 +63,7 @@
             <div class="dashboard-main-card">
                 <div class="card-head">
                     <h3>Recent Orders</h3>
-                    <p>Latest customer orders placed in the system.</p>
+                    <p>Latest customer orders with payment information.</p>
                 </div>
 
                 {% if recent_orders %}
@@ -53,6 +75,8 @@
                                 <th>Customer</th>
                                 <th>Service</th>
                                 <th>Status</th>
+                                <th>Payment</th>
+                                <th>Pay Status</th>
                                 <th>Price</th>
                                 <th>Placed On</th>
                             </tr>
@@ -66,6 +90,12 @@
                                 <td>
                                     <span class="status-badge status-{{ order.status|slugify }}">
                                         {{ order.get_status_display }}
+                                    </span>
+                                </td>
+                                <td>{{ order.get_payment_method_display }}</td>
+                                <td>
+                                    <span class="status-badge payment-{{ order.payment_status|slugify }}">
+                                        {{ order.get_payment_status_display }}
                                     </span>
                                 </td>
                                 <td>₹{{ order.total_price }}</td>
@@ -106,6 +136,28 @@
                         <div class="status-item">
                             <span>Completed</span>
                             <strong>{{ completed_orders }}</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-side-card">
+                    <h3>Payment Summary</h3>
+                    <div class="status-summary">
+                        <div class="status-item">
+                            <span>Paid</span>
+                            <strong>{{ paid_orders }}</strong>
+                        </div>
+                        <div class="status-item">
+                            <span>Pending Payments</span>
+                            <strong>{{ pending_payments }}</strong>
+                        </div>
+                        <div class="status-item">
+                            <span>Online</span>
+                            <strong>{{ online_payment_orders }}</strong>
+                        </div>
+                        <div class="status-item">
+                            <span>Pay at Shop</span>
+                            <strong>{{ pay_at_shop_orders }}</strong>
                         </div>
                     </div>
                 </div>

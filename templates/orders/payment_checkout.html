@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Payment Checkout | RAAJ QUALITY XEROX{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="success-card">
+            <p class="tagline">Online Payment</p>
+            <h1>Complete payment for {{ order.order_id }}</h1>
+            <p class="success-text">
+                Your order has been created. Complete the payment to confirm processing.
+            </p>
+
+            <div class="success-details">
+                <div class="success-item">
+                    <span>Customer Name</span>
+                    <strong>{{ order.customer_name }}</strong>
+                </div>
+
+                <div class="success-item">
+                    <span>Service</span>
+                    <strong>{{ order.service.name }}</strong>
+                </div>
+
+                <div class="success-item">
+                    <span>Payment Method</span>
+                    <strong>{{ order.get_payment_method_display }}</strong>
+                </div>
+
+                <div class="success-item">
+                    <span>Payment Status</span>
+                    <strong>{{ order.get_payment_status_display }}</strong>
+                </div>
+
+                <div class="success-item">
+                    <span>Total Amount</span>
+                    <strong>₹{{ order.total_price }}</strong>
+                </div>
+            </div>
+
+            <div class="payment-note">
+                This is a temporary payment simulation page. Later we will connect Razorpay here.
+            </div>
+
+            <div class="hero-actions">
+                <a href="{% url 'payment_success' order.order_id %}" class="btn primary-btn">
+                    Simulate Pay Now
+                </a>
+                <a href="{% url 'order_success' order.order_id %}" class="btn secondary-btn">
+                    Pay Later
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

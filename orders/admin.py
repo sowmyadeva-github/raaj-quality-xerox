@@ -13,13 +13,20 @@ class OrderAdmin(admin.ModelAdmin):
         "print_type",
         "paper_size",
         "status",
+        "payment_method",
         "payment_status",
         "total_price",
         "created_at",
     )
 
+    list_editable = (
+        "status",
+        "payment_status",
+    )
+
     list_filter = (
         "status",
+        "payment_method",
         "payment_status",
         "service",
         "print_type",
@@ -37,11 +44,6 @@ class OrderAdmin(admin.ModelAdmin):
         "order_id",
         "created_at",
         "total_price",
-    )
-
-    list_editable = (
-        "status",
-        "payment_status",
     )
 
     ordering = ("-created_at",)
@@ -67,6 +69,7 @@ class OrderAdmin(admin.ModelAdmin):
         ("Status & Payment", {
             "fields": (
                 "status",
+                "payment_method",
                 "payment_status",
                 "total_price",
             )

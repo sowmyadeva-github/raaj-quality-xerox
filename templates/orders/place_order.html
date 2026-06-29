@@ -3,85 +3,173 @@
 {% block title %}Place Order | RAAJ QUALITY XEROX{% endblock %}
 
 {% block content %}
+
 <section class="page-hero">
     <div class="container">
         <p class="tagline">Place Your Order</p>
-        <h1>Upload your document and place a print/Xerox order</h1>
+        <h1>Upload Documents in Seconds</h1>
         <p>
-            Fill in your details, choose the service and print options, and upload your file.
+            Upload your files, customize print options, choose payment, and we'll have your order ready quickly.
         </p>
     </div>
 </section>
 
 <section class="section">
     <div class="container">
+        <div class="order-flow-steps">
+    <div class="flow-step active">
+        <span>1</span>
+        <p>Upload File</p>
+    </div>
+
+    <div class="flow-line"></div>
+
+    <div class="flow-step">
+        <span>2</span>
+        <p>Select Options</p>
+    </div>
+
+    <div class="flow-line"></div>
+
+    <div class="flow-step">
+        <span>3</span>
+        <p>Payment</p>
+    </div>
+
+    <div class="flow-line"></div>
+
+    <div class="flow-step">
+        <span>4</span>
+        <p>Pickup</p>
+    </div>
+</div>
+
         <div class="order-form-wrapper">
+
             <div class="order-info-card">
-                <h2>Why order online?</h2>
+
+                <h2>Why Order Online?</h2>
+
                 <ul>
-                    <li>✔ Upload documents from home</li>
-                    <li>✔ Save time at the shop</li>
-                    <li>✔ Get faster print processing</li>
-                    <li>✔ Easy order tracking in next phase</li>
+                    <li>✔ Skip waiting at the shop</li>
+                    <li>✔ Upload PDF, Images & Documents</li>
+                    <li>✔ Choose Color/B&W Printing</li>
+                    <li>✔ Select Paper Size</li>
+                    <li>✔ Online or Pay at Shop</li>
+                    <li>✔ Live Order Tracking</li>
                 </ul>
+
+                <div class="order-tip-box">
+                    <h3>💡 Pro Tip</h3>
+                    <p>
+                        Mention urgent delivery or binding requirements in the instructions box.
+                    </p>
+                </div>
+
             </div>
 
             <div class="order-form-card">
+
                 <h2>Order Details</h2>
+
                 <form method="POST" enctype="multipart/form-data" class="order-form">
+
                     {% csrf_token %}
 
-                    <div class="form-group">
-                        <label for="{{ form.customer_name.id_for_label }}">Customer Name</label>
-                        {{ form.customer_name }}
+                    <div class="form-row">
+
+                        <div class="form-group">
+                            <label>Customer Name</label>
+                            {{ form.customer_name }}
+                        </div>
+
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            {{ form.phone_number }}
+                        </div>
+
                     </div>
 
                     <div class="form-group">
-                        <label for="{{ form.phone_number.id_for_label }}">Phone Number</label>
-                        {{ form.phone_number }}
-                    </div>
-
-                    <div class="form-group">
-                        <label for="{{ form.service.id_for_label }}">Service</label>
+                        <label>Service</label>
                         {{ form.service }}
                     </div>
 
-                    <div class="form-group">
-                        <label for="{{ form.document.id_for_label }}">Upload Document</label>
-                        {{ form.document }}
-                    </div>
+                    <div class="upload-box">
+    <label>Upload Document</label>
+
+    <div class="upload-inner">
+    <div class="upload-icon">📤</div>
+
+    <h3>Upload your file here</h3>
+    <p>PDF, DOC, DOCX, PPT, PPTX, XLS, XLSX, JPG, PNG files are supported</p>
+
+    <div class="file-tags">
+        <span>PDF</span>
+        <span>DOCX</span>
+        <span>PPT</span>
+        <span>XLSX</span>
+        <span>JPG</span>
+        <span>PNG</span>
+    </div>
+
+    {{ form.document }}
+    {% if form.document.errors %}
+    <div class="form-error">
+        {{ form.document.errors.0 }}
+    </div>
+{% endif %}
+
+<p id="selected-file" class="selected-file">
+    No file selected yet
+</p>
+</div>
+</div>
 
                     <div class="form-row">
+
                         <div class="form-group">
-                            <label for="{{ form.copies.id_for_label }}">Copies</label>
+                            <label>Copies</label>
                             {{ form.copies }}
                         </div>
 
                         <div class="form-group">
-                            <label for="{{ form.print_type.id_for_label }}">Print Type</label>
+                            <label>Print Type</label>
                             {{ form.print_type }}
                         </div>
+
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+                            <label>Paper Size</label>
+                            {{ form.paper_size }}
+                        </div>
+
+                        <div class="form-group">
+                            <label>Payment Method</label>
+                            {{ form.payment_method }}
+                        </div>
+
                     </div>
 
                     <div class="form-group">
-    <label for="{{ form.paper_size.id_for_label }}">Paper Size</label>
-    {{ form.paper_size }}
-</div>
+                        <label>Instructions</label>
+                        {{ form.instructions }}
+                    </div>
 
-<div class="form-group">
-    <label for="{{ form.payment_method.id_for_label }}">Payment Method</label>
-    {{ form.payment_method }}
-</div>
+                    <button class="btn primary-btn full-btn">
+                        Place Order
+                    </button>
 
-<div class="form-group">
-    <label for="{{ form.instructions.id_for_label }}">Instructions</label>
-    {{ form.instructions }}
-</div>
-
-                    <button type="submit" class="btn primary-btn full-btn">Place Order</button>
                 </form>
+
             </div>
+
         </div>
+
     </div>
 </section>
+
 {% endblock %}
