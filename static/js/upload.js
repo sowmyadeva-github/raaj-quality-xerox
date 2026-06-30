@@ -40,3 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+const editPhoneBtn = document.getElementById("editPhoneBtn");
+const phoneEditForm = document.getElementById("phoneEditForm");
+
+if (editPhoneBtn && phoneEditForm) {
+    editPhoneBtn.addEventListener("click", () => {
+        phoneEditForm.classList.toggle("active");
+    });
+}

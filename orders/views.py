@@ -6,6 +6,7 @@ from .models import Order
 def create_order(request):
     if request.method == "POST":
         form = OrderForm(request.POST, request.FILES)
+
         if form.is_valid():
             order = form.save(commit=False)
 
@@ -22,8 +23,18 @@ def create_order(request):
                 return redirect("payment_checkout", order_id=order.order_id)
 
             return redirect("order_success", order_id=order.order_id)
+
     else:
-        form = OrderForm()
+        initial_data = {}
+
+        if request.user.is_authenticated and hasattr(request.user, "profile"):
+            if request.user.profile.phone_number:
+                initial_data["phone_number"] = request.user.profile.phone_number
+
+            if request.user.first_name:
+                initial_data["customer_name"] = request.user.get_full_name() or request.user.username
+
+        form = OrderForm(initial=initial_data)
 
     return render(request, "orders/place_order.html", {"form": form})
 
@@ -68,3 +79,14 @@ def mark_payment_success(request, order_id):
     order.status = "confirmed"
     order.save()
     return redirect("order_success", order_id=order.order_id)
+def update_order_status(request, order_id):
+    order = get_object_or_404(Order, order_id=order_id)
+
+    if request.method == "POST":
+        new_status = request.POST.get("status")
+
+        if new_status in dict(Order.STATUS_CHOICES):
+            order.status = new_status
+            order.save()
+
+    return redirect("staff_dashboard")

@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+
+{% block title %}Customer Dashboard{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-page">
+
+<div class="container">
+
+    <div class="dashboard-header">
+
+        <div>
+            <p class="dashboard-tag">
+                CUSTOMER DASHBOARD
+            </p>
+
+            <h1>
+                Welcome,
+                {{ request.user.first_name|default:request.user.username }}
+            </h1>
+
+            <p>
+                Manage your print orders, invoices, profile and notifications.
+            </p>
+        </div>
+
+        <a href="{% url 'place_order' %}" class="btn primary-btn">
+            New Order
+        </a>
+
+    </div>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <p>Total Orders</p>
+            <h2>{{ total_orders }}</h2>
+        </div>
+
+        <div class="stat-card">
+            <p>Active Orders</p>
+            <h2>{{ active_orders }}</h2>
+        </div>
+
+        <div class="stat-card">
+            <p>Completed Orders</p>
+            <h2>{{ completed_orders }}</h2>
+        </div>
+
+        <div class="stat-card highlight-card">
+            <p>Pending Payments</p>
+            <h2>{{ pending_payments }}</h2>
+        </div>
+
+    </div>
+
+    <div class="dashboard-main-card">
+
+        <div class="card-head">
+            <h3>Recent Orders</h3>
+            <p>Your latest printing requests.</p>
+        </div>
+
+        {% if user_orders %}
+
+        <div class="table-wrap">
+
+            <table class="dashboard-table">
+
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Service</th>
+                        <th>Status</th>
+                        <th>Payment</th>
+                        <th>Amount</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for order in user_orders %}
+
+                    <tr>
+
+                        <td>{{ order.order_id }}</td>
+
+                        <td>{{ order.service.name }}</td>
+
+                        <td>
+                            <span class="status-badge status-{{ order.status|slugify }}">
+                                {{ order.get_status_display }}
+                            </span>
+                        </td>
+
+                        <td>{{ order.get_payment_status_display }}</td>
+
+                        <td>₹{{ order.total_price }}</td>
+
+                        <td>
+                            <a href="{% url 'order_detail' order.order_id %}">
+                                View
+                            </a>
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-box">
+
+            <h3>No Orders Yet</h3>
+
+            <p>
+                You haven't placed any orders yet.
+            </p>
+
+            <a href="{% url 'place_order' %}" class="btn primary-btn">
+                Place Your First Order
+            </a>
+
+        </div>
+
+        {% endif %}
+
+            </div>
+
+        <div class="dashboard-main-card">
+
+            <div class="card-head">
+                <h3>Quick Actions</h3>
+                <p>Frequently used customer actions.</p>
+            </div>
+
+            <div class="quick-actions-grid">
+
+                <a href="{% url 'place_order' %}" class="quick-card">
+                    <div class="quick-icon">📄</div>
+                    <h4>Place Order</h4>
+                    <p>Upload documents and create a new print request.</p>
+                </a>
+
+                <a href="{% url 'track_order' %}" class="quick-card">
+                    <div class="quick-icon">📦</div>
+                    <h4>Track Orders</h4>
+                    <p>Check live status of your current orders.</p>
+                </a>
+
+                <a href="{% url 'customer_profile' %}" class="quick-card">
+                    <div class="quick-icon">👤</div>
+                    <h4>Profile</h4>
+                    <p>Manage your account information.</p>
+                </a>
+
+                <a href="{% url 'contact' %}" class="quick-card">
+                    <div class="quick-icon">📞</div>
+                    <h4>Contact Shop</h4>
+                    <p>Need help? Contact our support team.</p>
+                </a>
+
+            </div>
+
+        </div>
+        <div class="dashboard-main-card">
+
+    <div class="card-head">
+        <h3>Notifications</h3>
+        <p>Latest updates about your account.</p>
+    </div>
+
+    <div class="notification-list">
+
+        <div class="notification-item success">
+            <div class="notification-icon">🟢</div>
+            <div>
+                <h4>Welcome!</h4>
+                <p>Your customer account has been created successfully.</p>
+            </div>
+        </div>
+
+        <div class="notification-item info">
+            <div class="notification-icon">🔵</div>
+            <div>
+                <h4>Online Ordering</h4>
+                <p>You can upload PDF, DOCX, PPT, XLSX and image files anytime.</p>
+            </div>
+        </div>
+
+        <div class="notification-item warning">
+            <div class="notification-icon">🟡</div>
+            <div>
+                <h4>Track Your Orders</h4>
+                <p>Use your Order ID to monitor live printing progress.</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+    </div>
+
+</section>
+
+{% endblock %}

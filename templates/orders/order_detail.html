@@ -11,6 +11,40 @@
             <p class="success-text">
                 Here is the current status and information for your order.
             </p>
+            <div class="order-timeline">
+    <div class="timeline-step {% if order.status == 'pending' or order.status == 'confirmed' or order.status == 'printing' or order.status == 'ready' or order.status == 'completed' %}done{% endif %}">
+        <span>1</span>
+        <p>Order Placed</p>
+    </div>
+
+    <div class="timeline-line"></div>
+
+    <div class="timeline-step {% if order.status == 'confirmed' or order.status == 'printing' or order.status == 'ready' or order.status == 'completed' %}done{% endif %}">
+        <span>2</span>
+        <p>Confirmed</p>
+    </div>
+
+    <div class="timeline-line"></div>
+
+    <div class="timeline-step {% if order.status == 'printing' or order.status == 'ready' or order.status == 'completed' %}done{% endif %}">
+        <span>3</span>
+        <p>Printing</p>
+    </div>
+
+    <div class="timeline-line"></div>
+
+    <div class="timeline-step {% if order.status == 'ready' or order.status == 'completed' %}done{% endif %}">
+        <span>4</span>
+        <p>Ready</p>
+    </div>
+
+    <div class="timeline-line"></div>
+
+    <div class="timeline-step {% if order.status == 'completed' %}done{% endif %}">
+        <span>5</span>
+        <p>Completed</p>
+    </div>
+</div>
 
             <div class="success-details">
                 <div class="success-item">
@@ -64,10 +98,11 @@
 </div>
             </div>
 
-            <div class="hero-actions">
-                <a href="{% url 'track_order' %}" class="btn secondary-btn">Track Another Order</a>
-                <a href="{% url 'home' %}" class="btn primary-btn">Back to Home</a>
-            </div>
+            <div class="hero-actions order-actions">
+    <a href="{% url 'track_order' %}" class="btn secondary-btn">Track Another Order</a>
+    <a href="{% url 'place_order' %}" class="btn primary-btn">Place New Order</a>
+    <a href="{% url 'contact' %}" class="btn secondary-btn">Contact Shop</a>
+</div>
         </div>
     </div>
 </section>

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Login | RAAJ QUALITY XEROX{% endblock %}
+
+{% block content %}
+<section class="auth-page">
+    <div class="container auth-layout">
+
+        <div class="auth-info">
+            <p class="tagline">Welcome Back</p>
+
+            <h1>Sign in to your account</h1>
+
+            <p>
+                Continue where you left off. Track orders, manage documents,
+                view invoices, and access your personalized dashboard.
+            </p>
+
+            <div class="auth-points">
+                <div>✔ View Order History</div>
+                <div>✔ Track Live Order Status</div>
+                <div>✔ Download Invoices</div>
+                <div>✔ Faster Future Orders</div>
+            </div>
+        </div>
+
+        <div class="auth-card">
+
+            <h2>Login</h2>
+
+            <p class="auth-subtitle">
+                Enter your credentials
+            </p>
+
+            {% if form.errors %}
+            <div class="form-error">
+                Invalid username or password.
+            </div>
+            {% endif %}
+
+            <form method="POST" class="order-form">
+
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label>Username</label>
+                    {{ form.username }}
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    {{ form.password }}
+                </div>
+
+                <button type="submit" class="btn primary-btn full-btn">
+                    Login
+                </button>
+
+            </form>
+
+            <p class="auth-switch">
+                Don't have an account?
+                <a href="{% url 'register' %}">
+                    Create one
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+</section>
+{% endblock %}

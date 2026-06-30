@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block title %}My Orders | RAAJ QUALITY XEROX{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-page">
+
+<div class="container">
+
+    <div class="dashboard-header">
+
+        <div>
+            <p class="dashboard-tag">MY ORDERS</p>
+
+            <h1>Order History</h1>
+
+            <p>
+                View and track all your printing orders in one place.
+            </p>
+        </div>
+
+        <a href="{% url 'place_order' %}" class="btn primary-btn">
+            + New Order
+        </a>
+
+    </div>
+
+    <div class="dashboard-main-card">
+
+        <div class="card-head">
+            <h3>Your Orders</h3>
+            <p>Recent and previous orders.</p>
+        </div>
+
+        {% if orders %}
+
+        <div class="table-wrap">
+
+            <table class="dashboard-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Service</th>
+                        <th>Status</th>
+                        <th>Payment</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th></th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for order in orders %}
+
+                    <tr>
+
+                        <td>{{ order.order_id }}</td>
+
+                        <td>{{ order.service.name }}</td>
+
+                        <td>
+
+                            <span class="status-badge status-{{ order.status|slugify }}">
+                                {{ order.get_status_display }}
+                            </span>
+
+                        </td>
+
+                        <td>
+                            {{ order.get_payment_status_display }}
+                        </td>
+
+                        <td>
+                            ₹{{ order.total_price }}
+                        </td>
+
+                        <td>
+                            {{ order.created_at|date:"d M Y" }}
+                        </td>
+
+                        <td>
+
+                            <a
+                                href="{% url 'order_detail' order.order_id %}"
+                                class="btn secondary-btn"
+                            >
+                                View
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-box">
+
+            <h3>No Orders Found</h3>
+
+            <p>
+                You haven't placed any orders yet.
+            </p>
+
+            <a
+                href="{% url 'place_order' %}"
+                class="btn primary-btn"
+            >
+                Place First Order
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</section>
+
+{% endblock %}

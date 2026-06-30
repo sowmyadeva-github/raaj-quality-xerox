@@ -6,6 +6,7 @@ from .views import (
     order_detail,
     payment_checkout,
     mark_payment_success,
+    update_order_status,
 )
 
 urlpatterns = [
@@ -26,4 +27,9 @@ urlpatterns = [
         mark_payment_success,
         name="payment_success",
     ),
+    path(
+    "update-status/<str:order_id>/",
+    update_order_status,
+    name="update_order_status",
+),
 ]

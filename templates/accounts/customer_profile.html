@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}My Profile | RAAJ QUALITY XEROX{% endblock %}
+
+{% block content %}
+<section class="dashboard-page">
+    <div class="container">
+
+        <div class="dashboard-header">
+            <div>
+                <p class="dashboard-tag">CUSTOMER PROFILE</p>
+                <h1>My Profile</h1>
+                <p>View and update your customer information.</p>
+            </div>
+
+            <a href="{% url 'customer_dashboard' %}" class="btn secondary-btn">
+                Back to Dashboard
+            </a>
+        </div>
+
+        <div class="dashboard-main-card">
+            <div class="card-head">
+                <h3>Account Details</h3>
+                <p>Your basic profile information.</p>
+            </div>
+
+            <div class="success-details">
+                <div class="success-item">
+                    <span>Full Name</span>
+                    <strong>{{ request.user.first_name }} {{ request.user.last_name }}</strong>
+                </div>
+
+                <div class="success-item">
+                    <span>Username</span>
+                    <strong>{{ request.user.username }}</strong>
+                </div>
+
+                <div class="success-item">
+                    <span>Email</span>
+                    <strong>{{ request.user.email }}</strong>
+                </div>
+
+                <div class="success-item">
+                    <span>Role</span>
+                    <strong>{{ request.user.profile.get_role_display }}</strong>
+                </div>
+
+                <div class="success-item phone-profile-item">
+                    <span>Phone Number</span>
+
+                    <div class="phone-view" id="phoneView">
+                        <strong>{{ request.user.profile.phone_number|default:"Not added yet" }}</strong>
+                        <button type="button" class="phone-edit-btn" id="editPhoneBtn">✏️ Edit</button>
+                    </div>
+
+                    <form method="POST" class="phone-edit-form" id="phoneEditForm">
+                        {% csrf_token %}
+                        {{ form.phone_number }}
+                        <button type="submit" class="phone-save-btn">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}
