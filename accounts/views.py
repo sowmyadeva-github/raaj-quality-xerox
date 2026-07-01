@@ -3,6 +3,23 @@ from django.contrib.auth import login, logout
 from django.contrib import messages
 from .forms import RegisterForm, LoginForm, ProfileForm
 from django.contrib.auth.decorators import login_required
+def role_required(allowed_roles):
+    def decorator(view_func):
+        def wrapper(request, *args, **kwargs):
+            if not request.user.is_authenticated:
+                return redirect("login")
+
+            if not hasattr(request.user, "profile"):
+                return redirect("home")
+
+            if request.user.profile.role not in allowed_roles:
+                return redirect("home")
+
+            return view_func(request, *args, **kwargs)
+
+        return wrapper
+
+    return decorator
 
 def register_view(request):
     if request.method == "POST":
@@ -72,21 +89,49 @@ def customer_dashboard(request):
     return render(request, "accounts/customer_dashboard.html", context)
 
 
-@login_required
-
+@role_required(["staff", "owner"])
 def staff_dashboard(request):
     from orders.models import Order
+    from django.db.models import Q, Sum
+    from django.utils import timezone
+
+    search_query = request.GET.get("search", "")
+    status_filter = request.GET.get("status", "")
 
     active_orders = Order.objects.exclude(
         status__in=["completed", "cancelled"]
-    ).select_related("service")
+    ).select_related("service").order_by("-created_at")
+
+    if search_query:
+        active_orders = active_orders.filter(
+            Q(order_id__icontains=search_query)
+            | Q(customer_name__icontains=search_query)
+            | Q(phone_number__icontains=search_query)
+        )
+
+    if status_filter:
+        active_orders = active_orders.filter(status=status_filter)
+
+    today = timezone.now().date()
 
     context = {
         "active_orders": active_orders,
+
         "active_count": active_orders.count(),
         "pending_count": Order.objects.filter(status="pending").count(),
         "printing_count": Order.objects.filter(status="printing").count(),
         "ready_count": Order.objects.filter(status="ready").count(),
+
+        "total_orders": Order.objects.count(),
+        "today_orders": Order.objects.filter(created_at__date=today).count(),
+        "completed_orders": Order.objects.filter(status="completed").count(),
+        "estimated_revenue": Order.objects.filter(
+            payment_status="paid"
+        ).aggregate(total=Sum("total_price"))["total"] or 0,
+
+        "search_query": search_query,
+        "status_filter": status_filter,
+        "status_choices": Order.STATUS_CHOICES,
     }
 
     return render(request, "accounts/staff_dashboard.html", context)
